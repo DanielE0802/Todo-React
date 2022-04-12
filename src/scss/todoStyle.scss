@@ -1,0 +1,176 @@
+// import font
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+$boxShadow:40px 40px 60px rgba(0, 0, 0, 0.1);
+$colorPrimary:#651FFF;
+
+* {
+    font-family: 'roboto';
+    // color: #fff;
+}
+
+body {
+    background: #FAFAFA;
+}
+
+#root{
+    min-height: 100vh;
+    .name-logo{
+        text-align: center;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 40px;
+        letter-spacing: -0.02em;
+        padding: 5px;
+        color:$colorPrimary;
+    
+        svg{
+            margin-right: 10px;
+            transform: translateY(-1px) ;
+            color: $colorPrimary;
+        }
+    }
+    
+    .loading-icon {
+        position: absolute;
+        right: 50%;
+        top: 50%;
+    }
+
+    h2.numberTasks {
+        text-align: center;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 40px;
+        letter-spacing: -0.02em;
+        padding: 5px;
+        color: #fff;
+        background:$colorPrimary;
+    }
+}
+
+.searchInput {
+    background: #FAFAFA;
+    border-radius: 5px;
+    border: none;
+}
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+    // overflow: hidden;
+    padding: 20px;
+}
+
+.TodoList {
+    min-height: calc(100vh - 320px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 20px;
+
+    .TodoItem {
+        user-select: none;
+        background: #fff;
+        padding: 24px;
+        border-radius: 6px;
+        display: flex;
+        position: relative;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-content: center;
+        // btn close
+        box-shadow: $boxShadow;
+        border-radius: 10px;
+
+        p.title {
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 32px;
+            letter-spacing: -0.02em;
+            margin: 0;
+            color: #130F1C;
+            width: calc(100% - 30px);
+            display: inline;
+        }
+
+        .line {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #ECECEE;
+            border-radius: 12px;
+            transition: all 0.3s ease-in-out;
+
+        }
+
+        .close {
+            position: absolute;
+            right: -8px;
+            top: -8px;
+            background: #ffff;
+            border-radius: 100%;
+            width: 26px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 26px;
+            box-shadow: $boxShadow;
+            font-size: 20px;
+            transition: all 0.3s ease-in-out;
+
+            cursor: pointer;
+
+            &:hover {
+                background: $colorPrimary;
+                color: #fff;
+            }
+        }
+
+        // Icon check
+
+        .Icon.Icon-check {
+            line-height: 0px;
+            cursor: pointer;
+            width: 20px;
+
+            &.icon-check--completed {
+
+                svg {
+                    color: green;
+                }
+            }
+        }
+
+        &.item--completed {
+            background: #a6e7a6;
+        }
+
+        &:hover {
+            .line {
+                background: $colorPrimary;
+            }
+        }
+
+    }
+}
+
+
+// Btns
+
+.primaryBtn,
+.TodoBotton {
+    background: $colorPrimary;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 36px;
+    min-width: 200px;
+    margin-top: 20px;
+    text-align: center;
+    color: #FFFFFF;
+    border: none;
+    padding: 2px 40px;
+}

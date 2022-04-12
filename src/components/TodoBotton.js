@@ -1,18 +1,14 @@
-import { Component } from "react";
+function TodoBotton() {
 
-class TodoBotton extends Component {
-  buttonEvent(msg) {
-    console.log(msg);
+  const showModal = (msg) =>{
+    alert(msg);
   }
 
-  render() {
-    return (
-      <button className="TodoBotton" 
-      onClick={() => this.buttonEvent("Click")}>
-        Crear ToDo
-      </button>
-    );
-  }
+  return (
+    <button className="TodoBotton" onClick={() => showModal("click") }>
+      Crear ToDo
+    </button>
+  );
 }
 
 export { TodoBotton };
