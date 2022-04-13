@@ -7,25 +7,30 @@ function useLocalStorage(itemName, initialValue) {
   // TodoItems
   const [item, setItem] = useState(initialValue);
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {
-      // Local storage
-      const localStorageItem = localStorage.getItem(itemName);
-      let parsedItem;
+      try {
+        // Local storage
+        const localStorageItem = localStorage.getItem(itemName);
+        let parsedItem;
 
-      if (!localStorageItem) {
-        localStorage.setItem("itemName", JSON.stringify(initialValue));
-        parsedItem = initialValue;
-      } else {
-        parsedItem = JSON.parse(localStorageItem);
-     
+        if (!localStorageItem) {
+          localStorage.setItem("itemName", JSON.stringify(initialValue));
+          parsedItem = initialValue;
+        } else {
+          parsedItem = JSON.parse(localStorageItem);
+
+        }
+        setItem(parsedItem)
+        setLoading(false)
+      } catch (e) {
+        console.log(e)
+        setError(true)
       }
-
-      setItem(parsedItem)
-      setLoading(false)
     }, 2000)
-  }, [initialValue, itemName])
+  }, [initialValue,itemName])
 
   const saveItem = (newItem) => {
     const itemString = JSON.stringify(newItem);
@@ -36,7 +41,8 @@ function useLocalStorage(itemName, initialValue) {
   return {
     item,
     saveItem,
-    loading
+    loading,
+    error
   };
 }
 
