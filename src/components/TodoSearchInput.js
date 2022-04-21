@@ -1,7 +1,11 @@
 import { Input, Container , InputLeftElement, InputGroup } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
+import { TaskContext } from "../context/TaskContext";
+import React from "react"
 
-function TodoSearchInput({ search, setSearch }) {
+function TodoSearchInput() {
+
+  const { search, setSearch } = React.useContext(TaskContext)
   const searchValueChange = (event) => {
     setSearch(event.target.value);
   };

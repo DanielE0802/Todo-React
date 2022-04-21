@@ -39,7 +39,20 @@ function TaskProvider(props) {
     saveTasks(newTask);
   };
 
-  
+  // Create Task
+
+  const addTask = (text) => {
+    const newTask = [...tasks];
+    newTask.push({
+      completed: false,
+      text: text
+    })
+    saveTasks(newTask);
+  };
+
+    // Modal
+
+    const [modal,setModal] = useState(false)
 
   const deleteTask = (text) => {
     if (!window.confirm("Are you sure you want to delete this task")) {
@@ -62,7 +75,9 @@ function TaskProvider(props) {
         tasks,
         searchedTasks,
         completeTask,
+        modal,setModal,
         completedTasks,
+        addTask,
         // setTasks,
         deleteTask,
       }}

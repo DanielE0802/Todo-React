@@ -1,12 +1,19 @@
+import React from 'react'
+import { TaskContext } from '../context/TaskContext'
+import { AddIcon } from '@chakra-ui/icons'
 function TodoBotton() {
 
-  const showModal = (msg) =>{
-    alert(msg);
+  const { modal, setModal } = React.useContext(TaskContext)
+
+  const showModal = () => {
+    setModal(prevState => !prevState)
   }
 
   return (
-    <button className="TodoBotton" onClick={() => showModal("click") }>
-      Crear ToDo
+    <button className={`TodoBotton --border-radius ${modal ?'--equis':''}`} onClick={showModal}>
+      <span className="TodoBotton-title title --hidden-desktop">Crear ToDo</span>
+      <span className="TodoBotton-icon icon plusIcons ">       <AddIcon />
+      </span>
     </button>
   );
 }

@@ -7,47 +7,48 @@ import { TodoSearchInput } from "../components/TodoSearchInput";
 import { CheckIcon } from "@chakra-ui/icons";
 import { CircularProgress } from "@chakra-ui/react";
 import { TaskContext } from "../context/TaskContext";
+import React from "react";
+import { Modal } from "../components/Modal";
+import {CloseIcon} from "@chakra-ui/icons"
+import { FormModal } from "../components/FormModal";
 
 function AppUI() {
+  const { loading, error, searchedTasks, completeTask, deleteTask, modal } =
+    React.useContext(TaskContext);
+
   return (
     <Fragment>
       <h1 className="name-logo">
         <CheckIcon />
         TODO APP
       </h1>
-      <TodoCounter/>
-      <TodoSearchInput/>
+      <TodoCounter />
+      <TodoSearchInput />
 
-      <TaskContext.Consumer>
-        {({loading,
-        error,
-        searchedTasks,
-        completeTask,
-        deleteTask}) => (
-          <TodoList>
-            {error && <p>Errorrrrr</p>}
-            {loading && (
-              <CircularProgress
-                className="loading-icon"
-                isIndeterminate
-                color="#651FFF"
-              />
-            )}
-            {!loading && searchedTasks.length < 1 && (
-              <p>Crea tu primera tarea</p>
-            )}
-            {searchedTasks.map((todo) => (
-              <TodoItem
-                key={todo.text}
-                text={todo.text}
-                completed={todo.completed}
-                completeTask={() => completeTask(todo.text)}
-                deleteTask={() => deleteTask(todo.text)}
-              ></TodoItem>
-            ))}
-          </TodoList>
+      <TodoList>
+        {error && <p>Errorrrrr</p>}
+        {loading && (
+          <CircularProgress
+            className="loading-icon"
+            isIndeterminate
+            color="#651FFF"
+          />
         )}
-      </TaskContext.Consumer>
+        {!loading && searchedTasks.length < 1 && <p>Crea tu primera tarea</p>}
+        {searchedTasks.map((todo) => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            completeTask={() => completeTask(todo.text)}
+            deleteTask={() => deleteTask(todo.text)}
+          ></TodoItem>
+        ))}
+      </TodoList>
+       <Modal>
+          <FormModal />
+      </Modal>
+
 
       <div className="toolbar container">
         <TodoBotton />

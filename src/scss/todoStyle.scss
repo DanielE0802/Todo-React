@@ -5,6 +5,7 @@
 
 $boxShadow:40px 40px 60px rgba(0, 0, 0, 0.1);
 $colorPrimary:#651FFF;
+$closeBoxShadow:0px 0px 5px rgba(54, 54, 54, 0.134);
 
 * {
     font-family: 'roboto';
@@ -15,24 +16,25 @@ body {
     background: #FAFAFA;
 }
 
-#root{
+#root {
     min-height: 100vh;
-    .name-logo{
+
+    .name-logo {
         text-align: center;
         font-weight: 700;
         font-size: 24px;
         line-height: 40px;
         letter-spacing: -0.02em;
         padding: 5px;
-        color:$colorPrimary;
-    
-        svg{
+        color: $colorPrimary;
+
+        svg {
             margin-right: 10px;
-            transform: translateY(-1px) ;
+            transform: translateY(-1px);
             color: $colorPrimary;
         }
     }
-    
+
     .loading-icon {
         position: absolute;
         right: 50%;
@@ -47,7 +49,7 @@ body {
         letter-spacing: -0.02em;
         padding: 5px;
         color: #fff;
-        background:$colorPrimary;
+        background: $colorPrimary;
     }
 }
 
@@ -67,7 +69,7 @@ body {
 .TodoList {
     min-height: calc(100vh - 320px);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 
     .TodoItem {
@@ -117,7 +119,7 @@ body {
             justify-content: center;
             align-items: center;
             height: 26px;
-            box-shadow: $boxShadow;
+            box-shadow: $closeBoxShadow;
             font-size: 20px;
             transition: all 0.3s ease-in-out;
 
@@ -173,4 +175,185 @@ body {
     color: #FFFFFF;
     border: none;
     padding: 2px 40px;
+    z-index: 199;
+
+    @media (max-width:900px) {
+        .--hidden-desktop {
+            display: none;
+        }
+
+    }
+
+
+    .TodoBotton-icon {
+        margin-left: 10px;
+
+        svg {
+            font-size: 12px;
+        }
+
+    }
+
+    @media (max-width:900px) {
+        &.--border-radius {
+            border-radius: 100%;
+            min-width: 65px;
+            min-height: 65px;
+            position: absolute;
+            right: calc(50% - (65px/2));
+            padding: 0;
+    
+            .TodoBotton-icon {
+                margin-left: 0px;
+    
+                svg {
+                    font-size: 24px;
+                    transition: all 0.3s ease-in-out;
+                }
+            }
+    
+            &:hover {
+                .TodoBotton-icon {
+                    svg {
+                        transform: scale(1.3)
+                    }
+                }
+            }
+    
+        }
+    
+        &.--equis {
+            svg {
+                transform: rotate(45deg)
+            }
+    
+            &:hover {
+                .plusIcons svg {
+                    transform: scale(1.3) rotate(45deg);
+                }
+            }
+        }
+    }
+
+
+}
+
+
+
+
+
+// Modal
+
+.modal {
+    position: fixed;
+    z-index: 99;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1f1b284e;
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    visibility: hidden;
+    ;
+    transition: all 0.22s ease;
+
+
+    .wrapper-modal {
+        height: 70%;
+        width: 50%;
+        background: #fff;
+        min-width: 300px;
+        border-radius: 8px;
+        padding: 10px 20px;
+        position: relative;
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0);
+        transition: all 0.15s ease-in;
+    }
+
+    .close {
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        background: #fff;
+        border-radius: 100%;
+        padding: 5px;
+        font-size: 16px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: $closeBoxShadow;
+
+        &:hover,
+        &:focus {
+            background: $colorPrimary;
+            color: #fff;
+        }
+
+    }
+
+    &.--active {
+        visibility: visible;
+        opacity: 1;
+
+        .wrapper-modal {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+    }
+
+}
+
+.input {
+    background: #FFFFFF;
+    border: 2px solid #DEDEE0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px 20px;
+    transition: all 0.2s ease;
+    width: 100%;
+    margin: 10px 0px;
+    resize: none;
+
+
+    &::placeholder {
+
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #5A5761;
+    }
+
+    &:hover {
+        background: rgba(247, 247, 247, 0.922);
+        ;
+    }
+
+    &:focus {
+        border: 2px solid #CBBEE7;
+    }
+}
+
+
+
+// Desktop
+
+@media (min-width:1200px) {
+    .TodoList {
+        min-height: calc(100vh - 320px);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 20px;
+    }
+
 }
