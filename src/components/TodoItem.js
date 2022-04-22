@@ -16,7 +16,9 @@ function TodoItem(props) {
       </span>
       <p className="title">{props.text}</p>
         <div className="line"></div>
+      <p className="description">{props.description}</p>
 
+      <span class="iconify" data-icon={`ic:outline-${props.category}`}></span>
 
       <span className="close">
       <Icon  onClick={props.deleteTask} icon="eva:close-fill" />

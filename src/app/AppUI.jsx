@@ -9,11 +9,10 @@ import { CircularProgress } from "@chakra-ui/react";
 import { TaskContext } from "../context/TaskContext";
 import React from "react";
 import { Modal } from "../components/Modal";
-import {CloseIcon} from "@chakra-ui/icons"
 import { FormModal } from "../components/FormModal";
 
 function AppUI() {
-  const { loading, error, searchedTasks, completeTask, deleteTask, modal } =
+  const { loading, error, searchedTasks, completeTask, deleteTask } =
     React.useContext(TaskContext);
 
   return (
@@ -39,6 +38,8 @@ function AppUI() {
           <TodoItem
             key={todo.text}
             text={todo.text}
+            description={todo.description}
+            category={todo.category}
             completed={todo.completed}
             completeTask={() => completeTask(todo.text)}
             deleteTask={() => deleteTask(todo.text)}

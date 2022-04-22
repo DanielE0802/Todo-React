@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-
+import Swal from 'sweetalert2'
 const TaskContext = React.createContext();
 
 function TaskProvider(props) {
@@ -41,11 +41,13 @@ function TaskProvider(props) {
 
   // Create Task
 
-  const addTask = (text) => {
+  const addTask = (objeto) => {
     const newTask = [...tasks];
     newTask.push({
       completed: false,
-      text: text
+      text: objeto[0],
+      description: objeto[1],
+      category: objeto[2]
     })
     saveTasks(newTask);
   };
@@ -55,13 +57,34 @@ function TaskProvider(props) {
     const [modal,setModal] = useState(false)
 
   const deleteTask = (text) => {
-    if (!window.confirm("Are you sure you want to delete this task")) {
-    } else {
-      const taskIndex = tasks.findIndex((task) => task.text === text);
-      const newTask = [...tasks];
-      newTask.splice(taskIndex, 1);
-      saveTasks(newTask);
-    }
+
+    Swal.fire({
+      title: '¿Deseas eliminar esta tarea?',
+      text: "¡No podras revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Tarea eliminada correctamente!',
+          '',
+          'success'
+        )
+
+        const taskIndex = tasks.findIndex((task) => task.text === text);
+        const newTask = [...tasks];
+        newTask.splice(taskIndex, 1);
+        saveTasks(newTask);
+      
+      }
+    })
+    
+
+
+
   };
 
   return (
