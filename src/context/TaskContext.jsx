@@ -16,6 +16,9 @@ function TaskProvider(props) {
   // Todo Input search
   const [search, setSearch] = useState("");
 
+  const [ edit, setEdit] = useState("");
+  const [idEdit, setIdEdit] = useState("");
+
   if (!search.length > 1) {
     searchedTasks = tasks;
   } else {
@@ -39,15 +42,28 @@ function TaskProvider(props) {
     saveTasks(newTask);
   };
 
+  // Edit tasks
+  const editTask = (objeto) => {
+    console.log(objeto);
+    const taskIndex = tasks.findIndex( (task) => task.id === objeto[3])
+    const newTask = [...tasks];
+    newTask[taskIndex].text = objeto[0];
+    newTask[taskIndex].description = objeto[1];
+    newTask[taskIndex].category = objeto[2];
+    saveTasks(newTask);
+  }
+
   // Create Task
 
   const addTask = (objeto) => {
+    let id = "id" + Math.random().toString(16).slice(2)
     const newTask = [...tasks];
     newTask.push({
       completed: false,
       text: objeto[0],
       description: objeto[1],
-      category: objeto[2]
+      category: objeto[2],
+      id:id,
     })
     saveTasks(newTask);
   };
@@ -82,9 +98,6 @@ function TaskProvider(props) {
       }
     })
     
-
-
-
   };
 
   return (
@@ -103,6 +116,9 @@ function TaskProvider(props) {
         addTask,
         // setTasks,
         deleteTask,
+        edit, setEdit,
+        editTask,
+        idEdit, setIdEdit,
       }}
     >
       {props.children}

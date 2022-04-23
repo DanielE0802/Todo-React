@@ -40,6 +40,7 @@ function AppUI() {
             text={todo.text}
             description={todo.description}
             category={todo.category}
+            id={todo.id}
             completed={todo.completed}
             completeTask={() => completeTask(todo.text)}
             deleteTask={() => deleteTask(todo.text)}

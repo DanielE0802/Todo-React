@@ -3,10 +3,11 @@ import { TaskContext } from '../context/TaskContext'
 import { AddIcon } from '@chakra-ui/icons'
 function TodoBotton() {
 
-  const { modal, setModal } = React.useContext(TaskContext)
+  const { modal, setModal, setEdit } = React.useContext(TaskContext)
 
   const showModal = () => {
     setModal(prevState => !prevState)
+    setEdit(false)
   }
 
   return (
