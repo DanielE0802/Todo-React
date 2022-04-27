@@ -6,6 +6,11 @@ import Swal from 'sweetalert2'
 function FormModal() {
     const { modal, setModal, addTask, edit, setEdit, editTask, idEdit } = React.useContext(TaskContext)
 
+    const resetForm = (event) => {
+        event.target[0].value = ""
+        event.target[1].value = ""
+    }
+
     const formSubmit = (event) => {
 
         if (edit === true) {
@@ -13,6 +18,8 @@ function FormModal() {
             editTask([event.target[0].value, event.target[1].value, event.target[2].value, idEdit])
             setEdit(false)
             setModal(false)
+            resetForm(event)
+
 
             Swal.fire({
                 position: 'bottom-end',
@@ -27,6 +34,8 @@ function FormModal() {
             console.log(event.target[0].value)
             addTask([event.target[0].value, event.target[1].value, event.target[2].value])
             setModal(false)
+            resetForm(event)
+
             Swal.fire({
                 position: 'bottom-end',
                 icon: 'success',
