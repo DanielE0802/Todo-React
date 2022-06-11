@@ -1,0 +1,64 @@
+$boxShadow: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
+
+.loading-todo {
+    user-select: none;
+    padding: 24px;
+    border-radius: 6px;
+    position: relative;
+    gap: 10px;
+    height: fit-content;
+    align-content: center;
+    border-radius: 10px;
+
+    // Background
+    background: #fcfcfc;
+    background: linear-gradient(to right, #f4f4f4 8%, #e8e8e8 18%, #f4f4f4 33%);
+    animation: preloadAnimation 3.5s forwards infinite linear;
+
+    .loading-title {
+        background: #fcfcfc;
+        border-radius: 8px;
+        margin-top: 5px;
+        height: 40px;
+        width: 100%;
+        background: linear-gradient(to right, #d4d4d4 8%, #e8e8e8 18%, #d4d4d4 33%);
+        animation: preloadAnimation 3.5s forwards infinite linear;
+    }
+
+    .loading-content {
+        background: #fcfcfc;
+        margin-top: 30px;
+        border-radius: 8px;
+        height: 100px;
+        width: 100%;
+        background: linear-gradient(to right, #dedede 8%, #e8e8e8 18%, #dedede 33%);
+        animation: preloadAnimation 3.5s forwards infinite linear;
+    }
+
+    .loading-delete-icon {
+        background: #fcfcfc;
+        margin-top: 30px;
+        border-radius: 100%;
+        display: block;
+        position: absolute;
+        top: -45px;
+        right: -10px;
+        height:30px;
+        width: 30px;
+        background: linear-gradient(to right, #f4f4f4 8%, #e8e8e8 18%, #f4f4f4 33%);
+        animation: preloadAnimation 29.5s forwards infinite linear;
+    }
+}
+
+
+
+
+@keyframes preloadAnimation {
+    0% {
+        background-position: -769px
+    }
+
+    100% {
+        background-position: 769px
+    }
+}

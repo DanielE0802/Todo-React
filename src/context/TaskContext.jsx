@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 const TaskContext = React.createContext();
-
 function TaskProvider(props) {
   const {
     item: tasks,
@@ -16,7 +15,7 @@ function TaskProvider(props) {
   // Todo Input search
   const [search, setSearch] = useState("");
 
-  const [ edit, setEdit] = useState("");
+  const [edit, setEdit] = useState("");
   const [idEdit, setIdEdit] = useState("");
 
   if (!search.length > 1) {
@@ -43,61 +42,77 @@ function TaskProvider(props) {
   };
 
   // Edit tasks
+  // const editTask = (objeto) => {
+  //   console.log(objeto);
+  //   const taskIndex = tasks.findIndex((task) => task.id === objeto[3]);
+  //   const newTask = [...tasks];
+  //   newTask[taskIndex].text = objeto[0];
+  //   newTask[taskIndex].description = objeto[1];
+  //   newTask[taskIndex].category = objeto[2];
+  //   saveTasks(newTask);
+  // };
+
+  
+
   const editTask = (objeto) => {
-    console.log(objeto);
-    const taskIndex = tasks.findIndex( (task) => task.id === objeto[3])
+
+    let setObject = {title: objeto[0], description: objeto[1], category: objeto[2]}
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: setObject
+  };
+
+    fetch("http://localhost:3001/notes/add/", requestOptions)
+    .then(response => console.log(response))
+
+    const taskIndex = tasks.findIndex((task) => task.id === objeto[3]);
     const newTask = [...tasks];
     newTask[taskIndex].text = objeto[0];
     newTask[taskIndex].description = objeto[1];
     newTask[taskIndex].category = objeto[2];
     saveTasks(newTask);
-  }
+  };
 
   // Create Task
 
   const addTask = (objeto) => {
-    let id = "id" + Math.random().toString(16).slice(2)
+    let id = "id" + Math.random().toString(16).slice(2);
     const newTask = [...tasks];
     newTask.push({
       completed: false,
       text: objeto[0],
       description: objeto[1],
       category: objeto[2],
-      id:id,
-    })
+      id: id,
+    });
     saveTasks(newTask);
   };
 
-    // Modal
+  // Modal
 
-    const [modal,setModal] = useState(false)
+  const [modal, setModal] = useState(false);
 
   const deleteTask = (text) => {
-
     Swal.fire({
-      title: '¿Deseas eliminar esta tarea?',
+      title: "¿Deseas eliminar esta tarea?",
       text: "¡No podras revertir esto!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, eliminar!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Tarea eliminada correctamente!',
-          '',
-          'success'
-        )
+        Swal.fire("Tarea eliminada correctamente!", "", "success");
 
         const taskIndex = tasks.findIndex((task) => task.text === text);
         const newTask = [...tasks];
         newTask.splice(taskIndex, 1);
         saveTasks(newTask);
-      
       }
-    })
-    
+    });
   };
 
   return (
@@ -111,14 +126,17 @@ function TaskProvider(props) {
         tasks,
         searchedTasks,
         completeTask,
-        modal,setModal,
+        modal,
+        setModal,
         completedTasks,
         addTask,
         // setTasks,
         deleteTask,
-        edit, setEdit,
+        edit,
+        setEdit,
         editTask,
-        idEdit, setIdEdit,
+        idEdit,
+        setIdEdit,
       }}
     >
       {props.children}

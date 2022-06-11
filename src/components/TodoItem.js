@@ -1,34 +1,33 @@
 import { Icon } from "@iconify/react";
-import React from "react"
+import React from "react";
 import { TaskContext } from "../context/TaskContext";
 
 function TodoItem(props) {
-
-  const { setEdit, setModal, setIdEdit} = React.useContext(TaskContext)
+  const { setEdit, setModal, setIdEdit } = React.useContext(TaskContext);
 
   const editTask = (event) => {
-    setModal(true)
-    setEdit(true)
-    setIdEdit(event.target.attributes.id.nodeValue)
-  }
+    setModal(true);
+    setEdit(true);
+    setIdEdit(event.target.attributes.id.nodeValue);
+  };
 
   let nameOfCategory = "";
 
   switch (props.category) {
     case "work":
-      nameOfCategory = "Trabajo"
+      nameOfCategory = "Trabajo";
       break;
 
     case "beach-access":
-      nameOfCategory = "Vacaciones"
+      nameOfCategory = "Vacaciones";
       break;
 
     case "school":
-      nameOfCategory = "Estudio"
+      nameOfCategory = "Estudio";
       break;
 
     case "home":
-      nameOfCategory = "Hogar"
+      nameOfCategory = "Hogar";
       break;
 
     default:
@@ -38,20 +37,20 @@ function TodoItem(props) {
   return (
     <li className={`TodoItem  ${props.completed && "item--completed"} `}>
       <span
-        className={`Icon Icon-check ${props.completed && "icon-check--completed"}`}>
+        className={`Icon Icon-check ${
+          props.completed && "icon-check--completed"
+        }`}
+      >
         <Icon onClick={props.completeTask} icon="akar-icons:check-box" />
       </span>
-      <p className="title">{props.text}
-      </p>
+      <p className="title">{props.text}</p>
 
       <div className="TodoItem-category-icons">
-
-        <span className="iconify" data-icon={`ic:outline-${props.category}`}>
-
-        </span>
-        <div className="Icon-tooltip">
-          {nameOfCategory}
-        </div>
+        <span
+          className="iconify"
+          data-icon={`ic:outline-${props.category}`}
+        ></span>
+        <div className="Icon-tooltip">{nameOfCategory}</div>
       </div>
       <div className="line"></div>
       <p className="description">{props.description}</p>
