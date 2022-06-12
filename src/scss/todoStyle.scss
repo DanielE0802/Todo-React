@@ -315,7 +315,6 @@ body {
       border-radius: 100%;
       min-width: 65px;
       min-height: 65px;
-      position: absolute;
       right: calc(50% - (65px / 2));
       padding: 0;
 
@@ -603,4 +602,12 @@ select {
     transform: translate(-36px, 0px) scale(1.1);
 
   }
+}
+
+.toolbar {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  bottom: 20px;
 }
