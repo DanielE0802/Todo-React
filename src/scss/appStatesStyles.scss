@@ -1,3 +1,5 @@
+@import "todoStyle";
+
 $boxShadow: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
 
 .loading-todo {
@@ -50,7 +52,7 @@ $boxShadow: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
     }
 }
 
-.TodosEmpty{
+.TodosEmpty, .TodosError{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,14 +60,14 @@ $boxShadow: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
     min-height: calc(100vh - 348px);
 
     h1{
-        color: #651fff;
+        color: var(--title-home);
         font-weight: 500;
         font-size: 20px;
         letter-spacing: -0.54px;
     }
 
     svg{
-        color: #651fff;
+        color: var(--title-home);
         font-weight: 500;
         font-size: 32px;
     }

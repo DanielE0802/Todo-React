@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import Swal from "sweetalert2";
+import { useColorMode } from "@chakra-ui/react";
 const TaskContext = React.createContext();
+
 function TaskProvider(props) {
   const {
     item: tasks,
@@ -52,20 +54,22 @@ function TaskProvider(props) {
   //   saveTasks(newTask);
   // };
 
-  
-
   const editTask = (objeto) => {
-
-    let setObject = {title: objeto[0], description: objeto[1], category: objeto[2]}
+    let setObject = {
+      title: objeto[0],
+      description: objeto[1],
+      category: objeto[2],
+    };
 
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: setObject
-  };
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: setObject,
+    };
 
-    fetch("http://localhost:3001/notes/add/", requestOptions)
-    .then(response => console.log(response))
+    fetch("http://localhost:3001/notes/add/", requestOptions).then((response) =>
+      console.log(response)
+    );
 
     const taskIndex = tasks.findIndex((task) => task.id === objeto[3]);
     const newTask = [...tasks];
@@ -115,10 +119,19 @@ function TaskProvider(props) {
     });
   };
 
+  // theme
+
+  const { colorMode, toggleColorMode } = useColorMode();
+
+
+
+
   return (
     <TaskContext.Provider
       value={{
+        toggleColorMode,
         loading,
+        colorMode,
         error,
         totalTasks,
         search,

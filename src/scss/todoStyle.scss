@@ -3,9 +3,58 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-$boxShadow: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
-$colorPrimary: #651fff;
-$closeBoxShadow: 0px 0px 5px rgba(54, 54, 54, 0.134);
+$boxShadow-light: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
+$colorPrimary-light: #651fff;
+$closeBoxShadow-light: 0px 0px 5px rgba(54, 54, 54, 0.134);
+$text-mode-light:#fff;
+$search-input-light:#fafafa;
+$todo-item-light:#fff;
+$text-title-light: #130f1c;
+$text-description-light: #2b2932;
+$background-light: #fff;
+$title-home-light:#651fff;
+$green-light:#a6e7a6;
+$border-light: #dedee0;
+$box-shadow-modal-light: #1f1b284e;
+
+$colorPrimary-dark: #651fff;
+$todo-item-dark: #272D38;
+$green-dark:#3fd05c;
+$background-dark:#1A202C;
+$box-shadow-modal-dark:rgba(83, 80, 90, 0.326);
+$boxShadow-dark:0px 7px 12px 6px rgba(66, 64, 64, 0.09);
+$close-box-shadow-dark: 0px 0px 5px rgba(122, 122, 122, 0.15);
+$border-dark:rgba(255, 255, 255, 0.06);
+
+
+html[data-theme="dark"]{
+  --todo-item:#{$todo-item-dark};
+  --color-primary:#{$colorPrimary-dark};
+  --green:#{$green-dark};
+  --background:#{$background-dark};
+  --close-box-shadow:#{$close-box-shadow-dark};
+  --box-shadow:#{$boxShadow-dark};
+  --border:#{$border-dark};
+  --box-shadow-modal:#{$box-shadow-modal-dark};
+
+}
+html[data-theme="light"]{
+  --box-shadow-modal:#{$box-shadow-modal-light};
+  --color-primary:#{$colorPrimary-light};
+  --close-box-shadow:#{$closeBoxShadow-light};
+  --box-shadow:#{$boxShadow-light};
+  --text-mode:#{$text-mode-light};
+  --search-input:#{$search-input-light};
+  --todo-item:#{$todo-item-light};
+  --text-title:#{$text-title-light};
+  --text-description:#{$text-description-light};
+  --background:#{$background-light};
+  --title-home:#{$title-home-light};
+  --green:#{$green-light};
+  --border:#{$border-light};
+
+}
+
 
 * {
   font-family: "roboto";
@@ -53,12 +102,12 @@ body {
     line-height: 40px;
     letter-spacing: -0.02em;
     padding: 5px;
-    color: $colorPrimary;
+    color: var(--title-home);
 
     svg {
       margin-right: 10px;
       transform: translateY(-1px);
-      color: $colorPrimary;
+      color: var(--title-home);
     }
   }
 
@@ -75,13 +124,13 @@ body {
     line-height: 40px;
     letter-spacing: -0.02em;
     padding: 5px;
-    color: #fff;
-    background: $colorPrimary;
+    color: var(--text-mode);
+    background: var(--color-primary);
   }
 }
 
 .searchInput {
-  background: #fafafa;
+  background: var(--search-input);
   border-radius: 5px;
   border: none;
 }
@@ -101,7 +150,7 @@ body {
 
   .TodoItem {
     user-select: none;
-    background: #fff;
+    background: var(--todo-item);
     padding: 24px;
     border-radius: 6px;
     display: flex;
@@ -112,7 +161,7 @@ body {
     height: fit-content;
     align-content: center;
     // btn close
-    box-shadow: $boxShadow;
+    box-shadow: var(--box-shadow);
     border-radius: 10px;
 
     p.title {
@@ -121,7 +170,7 @@ body {
       line-height: 32px;
       letter-spacing: -0.02em;
       margin: 0;
-      color: #130f1c;
+      color: var(--text-title);
       width: calc(100% - 65px);
       display: inline;
     }
@@ -131,7 +180,7 @@ body {
       font-size: 14px;
       letter-spacing: -0.02em;
       margin: 0;
-      color: #2b2932;
+      color: var(--text-description);
       width: 100%;
     }
 
@@ -149,7 +198,7 @@ body {
       visibility: hidden;
       position: absolute;
       transition: all 0.3s ease-in-out;
-      background: #fff;
+      background: var(--background);
       padding: 5px;
       z-index: 99;
       border-radius: 4px;
@@ -180,21 +229,21 @@ body {
       position: absolute;
       right: -8px;
       top: -8px;
-      background: #ffff;
+      background: var(--background);
       border-radius: 100%;
       width: 26px;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 26px;
-      box-shadow: $closeBoxShadow;
+      box-shadow: var(--close-box-shadow);
       font-size: 20px;
       transition: all 0.3s ease-in-out;
 
       cursor: pointer;
 
       &:hover {
-        background: $colorPrimary;
+        background: var(--color-primary);
         color: #fff;
       }
     }
@@ -214,16 +263,16 @@ body {
     }
 
     &.item--completed {
-      background: #a6e7a6;
+      background: var(--green);
     }
 
     &:hover {
       .line {
-        background: $colorPrimary;
+        background: var(--color-primary);
       }
 
       .TodoItem-category-icons svg {
-        color: $colorPrimary;
+        color: var(--color-primary);
       }
     }
   }
@@ -234,7 +283,7 @@ body {
 .primaryBtn,
 .TodoBotton,
 .btn {
-  background: $colorPrimary;
+  background: var(--color-primary);
   border-radius: 5px;
   font-weight: 700;
   font-size: 14px;
@@ -242,7 +291,7 @@ body {
   min-width: 200px;
   margin-top: 20px;
   text-align: center;
-  color: #ffffff;
+  color:#fff;
   border: none;
   padding: 2px 40px;
   z-index: 199;
@@ -313,7 +362,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #1f1b284e;
+  background:  var(--box-shadow-modal);
   backdrop-filter: blur(3px);
   opacity: 0;
   visibility: hidden;
@@ -322,7 +371,7 @@ body {
   .wrapper-modal {
     height: 70%;
     width: 70%;
-    background: #fff;
+    background: var(--background);
     min-width: 300px;
     max-width: 900px;
     border-radius: 8px;
@@ -370,7 +419,7 @@ body {
     position: absolute;
     right: -10px;
     top: -10px;
-    background: #fff;
+    background: var(--background);
     border-radius: 100%;
     padding: 5px;
     font-size: 16px;
@@ -381,12 +430,12 @@ body {
     align-items: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: $closeBoxShadow;
+    box-shadow: var(--close-box-shadow);
 
     &:hover,
     &:focus {
-      background: $colorPrimary;
-      color: #fff;
+      background: var(--color-primary);
+      color: var(--background);
     }
   }
 
@@ -404,8 +453,8 @@ body {
 
 .input,
 select {
-  background: #ffffff;
-  border: 2px solid #dedee0;
+  background: var(--background);
+  border: 2px solid var(--border);
   box-sizing: border-box;
   border-radius: 5px;
   outline: none;
@@ -459,5 +508,99 @@ select {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, calc(33% - 10px)));
     gap: 20px;
+  }
+}
+
+// Switch theme
+.Switch{
+  position: absolute;
+  top: 6px;
+  right: 15%;
+  width: 80px;
+  height: 38px;
+  background:#651fff;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+
+  .light-container{
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    width: 10px;
+    height: 10px;
+    background:rgb(227, 213, 15);
+    left: 6px;
+    top: 5px;
+    height: 28px;
+    border-radius: 100%;
+    width: 28px;
+
+    &:before{
+      content: url('https://api.iconify.design/wi/stars.svg?color=white&width=24&height=24');
+      opacity: 0;
+      visibility: hidden;
+    } 
+
+    .light__content{
+    transition: all 0.3s ease-in-out;
+      position: absolute;
+      background:rgb(228, 244, 7);
+      left: 4px;
+      top: 4px;
+      height: 20px;
+      border-radius: 100%;
+      width:20px;
+    }
+  }
+
+  &.dark{
+    background:#26334A;
+    .light-container{
+
+      animation: themeDarkMode .4s forwards  linear;
+
+      &::before{
+        display:inline-block;
+        position: relative;
+        top: 3px;
+        opacity: 1;
+        animation: themeDarkModeStars .4s forwards  ease-in;
+        animation-delay: 0.4s;
+        visibility: visible;
+      }
+
+
+      .light__content{
+      background:#26334A;
+        &::after{
+          content: url('https://api.iconify.design/bi/moon.svg?color=white&width=13&height=13');
+          position: relative;
+          left:3px;
+          top: -1px;
+
+        }
+      }
+
+    }
+  }
+}
+
+@keyframes themeDarkMode {
+  0%{
+
+  }
+  100%{
+    transform: translate(40px, 0px);
+    background:var(--background);
+  }
+}
+
+@keyframes themeDarkModeStars {
+  0%{
+  }
+  100%{
+    transform: translate(-36px, 0px) scale(1.1);
+
   }
 }

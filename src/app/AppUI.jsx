@@ -10,6 +10,7 @@ import React from "react";
 import { Modal } from "../components/Modal";
 import { FormModal } from "../components/FormModal";
 import { User } from "../components/User";
+import { SwitchModeTheme } from "../components/SwitchModeTheme";
 
 // States ToDos
 import { TodosLoading } from "../components/appStates/TodosLoading";
@@ -22,10 +23,14 @@ function AppUI() {
 
   return (
     <Fragment>
-      <h1 className="name-logo">
-        <CheckIcon />
-        TODO APP
-      </h1>
+      <div className="header-app">
+        <h1 className="name-logo">
+          <CheckIcon />
+          TODO APP
+        </h1>
+        <SwitchModeTheme />
+      </div>
+
       <TodoCounter />
       <TodoSearchInput />
 
@@ -59,7 +64,7 @@ function AppUI() {
         <TodoBotton />
       </div>
 
-      <User></User>
+      {/* <User></User> */}
     </Fragment>
   );
 }
