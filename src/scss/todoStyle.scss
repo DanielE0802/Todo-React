@@ -16,15 +16,17 @@ $title-home-light:#651fff;
 $green-light:#a6e7a6;
 $border-light: #dedee0;
 $box-shadow-modal-light: #1f1b284e;
+$gray-ligth:rgb(61, 61, 61);
 
 $colorPrimary-dark: #651fff;
 $todo-item-dark: #272D38;
-$green-dark:#3fd05c;
+$green-dark:#01B636;
 $background-dark:#1A202C;
 $box-shadow-modal-dark:rgba(83, 80, 90, 0.326);
 $boxShadow-dark:0px 7px 12px 6px rgba(66, 64, 64, 0.09);
 $close-box-shadow-dark: 0px 0px 5px rgba(122, 122, 122, 0.15);
 $border-dark:rgba(255, 255, 255, 0.06);
+$gray-dark:#fff;
 
 
 html[data-theme="dark"]{
@@ -52,7 +54,19 @@ html[data-theme="light"]{
   --title-home:#{$title-home-light};
   --green:#{$green-light};
   --border:#{$border-light};
+  --gray:#{$gray-ligth};
 
+
+}
+
+.swal2-popup{
+  background: var(--background);
+  color: var(--text-title);
+
+  .swal2-icon{
+  color: var(--text-title) !important;
+  border-color: var(--text-title) !important;
+  }
 }
 
 
@@ -103,6 +117,10 @@ body {
     letter-spacing: -0.02em;
     padding: 5px;
     color: var(--title-home);
+
+    @media (max-width:380px) {
+       margin-right: 45px;
+    }
 
     svg {
       margin-right: 10px;
@@ -213,7 +231,7 @@ body {
       svg {
         position: absolute;
         font-size: 20px;
-        color: rgb(61, 61, 61);
+        color: var(--gray);
         cursor: pointer;
       }
 
@@ -300,6 +318,8 @@ body {
     .--hidden-desktop {
       display: none;
     }
+
+    background:#661fffc5;
   }
 
   .TodoBotton-icon {
@@ -317,6 +337,7 @@ body {
       min-height: 65px;
       right: calc(50% - (65px / 2));
       padding: 0;
+      backdrop-filter: blur(2px);
 
       .TodoBotton-icon {
         margin-left: 0px;
@@ -434,7 +455,7 @@ body {
     &:hover,
     &:focus {
       background: var(--color-primary);
-      color: var(--background);
+      color: #fff;
     }
   }
 
@@ -522,6 +543,9 @@ select {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 
+  @media (max-width:700px) {
+      right: 2%;
+  }
 
   .light-container{
     position: absolute;
@@ -550,6 +574,13 @@ select {
       height: 20px;
       border-radius: 100%;
       width:20px;
+    }
+  }
+
+  &.light{
+    .light-container{
+    animation: themeLightMode .4s forwards linear;
+
     }
   }
 
@@ -591,7 +622,18 @@ select {
   }
   100%{
     transform: translate(40px, 0px);
-    background:var(--background);
+    background:#fff;
+  }
+}
+
+
+@keyframes themeLightMode {
+  0%{
+    transform: translate(40px, 0px);
+
+  }
+  100%{
+    transform: translate(0px, 0px);
   }
 }
 
