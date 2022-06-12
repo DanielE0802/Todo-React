@@ -10,7 +10,11 @@ import React from "react";
 import { Modal } from "../components/Modal";
 import { FormModal } from "../components/FormModal";
 import { User } from "../components/User";
+
+// States ToDos
 import { TodosLoading } from "../components/appStates/TodosLoading";
+import { TodosError } from "../components/appStates/TodosError";
+import { TodosEmpty } from "../components/appStates/TodosEmpty";
 
 function AppUI() {
   const { loading, error, searchedTasks, completeTask, deleteTask } =
@@ -25,13 +29,15 @@ function AppUI() {
       <TodoCounter />
       <TodoSearchInput />
 
-      <TodoList>
-        {error && <p>Errorrrrr</p>}
-        {loading && (
-            <TodosLoading></TodosLoading>
-        )}
-        {!loading && searchedTasks.length < 1 && <p>Crea tu primera tarea</p>}
-        {searchedTasks.map((todo) => (
+      <TodoList
+        error={error}
+        loading={loading}
+        searchedTasks={searchedTasks}
+        // Render props
+        onError={() => <TodosError></TodosError>}
+        onLoading={() => <TodosLoading></TodosLoading>}
+        onEmpty={() => <TodosEmpty></TodosEmpty>}
+        render={(todo) => (
           <TodoItem
             key={todo.text}
             text={todo.text}
@@ -42,8 +48,9 @@ function AppUI() {
             completeTask={() => completeTask(todo.text)}
             deleteTask={() => deleteTask(todo.text)}
           ></TodoItem>
-        ))}
-      </TodoList>
+        )}
+      />
+
       <Modal>
         <FormModal />
       </Modal>
@@ -52,8 +59,7 @@ function AppUI() {
         <TodoBotton />
       </div>
 
-          <User></User>
-
+      <User></User>
     </Fragment>
   );
 }
