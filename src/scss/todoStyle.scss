@@ -143,7 +143,7 @@ body {
 }
 
 .TodoList {
-  min-height: calc(100vh - 320px);
+  min-height: calc(100vh - 350px);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 100%));
   gap: 20px;

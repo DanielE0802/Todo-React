@@ -12,13 +12,15 @@ import { FormModal } from "../components/FormModal";
 import { User } from "../components/User";
 import { SwitchModeTheme } from "../components/SwitchModeTheme";
 
+
 // States ToDos
 import { TodosLoading } from "../components/appStates/TodosLoading";
 import { TodosError } from "../components/appStates/TodosError";
 import { TodosEmpty } from "../components/appStates/TodosEmpty";
+import { TodoSearchEmpty } from "../components/appStates/TodoSearchEmpty";
 
 function AppUI() {
-  const { loading, error, searchedTasks, completeTask, deleteTask } =
+  const { loading, error, searchedTasks, completeTask, deleteTask, tasks } =
     React.useContext(TaskContext);
 
   return (
@@ -38,10 +40,12 @@ function AppUI() {
         error={error}
         loading={loading}
         searchedTasks={searchedTasks}
+        tasks={tasks}
         // Render props
         onError={() => <TodosError></TodosError>}
         onLoading={() => <TodosLoading></TodosLoading>}
         onEmpty={() => <TodosEmpty></TodosEmpty>}
+        onSearchEmpty={()=> <TodoSearchEmpty></TodoSearchEmpty>}
         render={(todo) => (
           <TodoItem
             key={todo.text}

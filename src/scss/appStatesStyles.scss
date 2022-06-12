@@ -52,7 +52,7 @@ $boxShadow: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
     }
 }
 
-.TodosEmpty, .TodosError{
+.TodosEmpty, .TodosError, .TodoSearchEmpty{
     display: flex;
     justify-content: center;
     align-items: center;
