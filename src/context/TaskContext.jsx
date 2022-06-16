@@ -44,33 +44,8 @@ function TaskProvider(props) {
   };
 
   // Edit tasks
-  // const editTask = (objeto) => {
-  //   console.log(objeto);
-  //   const taskIndex = tasks.findIndex((task) => task.id === objeto[3]);
-  //   const newTask = [...tasks];
-  //   newTask[taskIndex].text = objeto[0];
-  //   newTask[taskIndex].description = objeto[1];
-  //   newTask[taskIndex].category = objeto[2];
-  //   saveTasks(newTask);
-  // };
-
   const editTask = (objeto) => {
-    let setObject = {
-      title: objeto[0],
-      description: objeto[1],
-      category: objeto[2],
-    };
-
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: setObject,
-    };
-
-    fetch("http://localhost:3001/notes/add/", requestOptions).then((response) =>
-      console.log(response)
-    );
-
+    console.log(objeto);
     const taskIndex = tasks.findIndex((task) => task.id === objeto[3]);
     const newTask = [...tasks];
     newTask[taskIndex].text = objeto[0];
@@ -78,6 +53,31 @@ function TaskProvider(props) {
     newTask[taskIndex].category = objeto[2];
     saveTasks(newTask);
   };
+
+  // const editTask = (objeto) => {
+  //   let setObject = {
+  //     title: objeto[0],
+  //     description: objeto[1],
+  //     category: objeto[2],
+  //   };
+
+  //   const requestOptions = {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: setObject,
+  //   };
+
+  //   fetch("http://localhost:3001/notes/add/", requestOptions).then((response) =>
+  //     console.log(response)
+  //   );
+
+  //   const taskIndex = tasks.findIndex((task) => task.id === objeto[3]);
+  //   const newTask = [...tasks];
+  //   newTask[taskIndex].text = objeto[0];
+  //   newTask[taskIndex].description = objeto[1];
+  //   newTask[taskIndex].category = objeto[2];
+  //   saveTasks(newTask);
+  // };
 
   // Create Task
 

@@ -17,6 +17,7 @@ $green-light:#a6e7a6;
 $border-light: #dedee0;
 $box-shadow-modal-light: #1f1b284e;
 $gray-ligth:rgb(61, 61, 61);
+$hover-input-light:rgba(247, 247, 247, 0.922);
 
 $colorPrimary-dark: #651fff;
 $todo-item-dark: #272D38;
@@ -27,7 +28,7 @@ $boxShadow-dark:0px 7px 12px 6px rgba(66, 64, 64, 0.09);
 $close-box-shadow-dark: 0px 0px 5px rgba(122, 122, 122, 0.15);
 $border-dark:rgba(255, 255, 255, 0.06);
 $gray-dark:#fff;
-
+$hover-input-dark:rgba(255, 255, 255, 0.04);
 
 html[data-theme="dark"]{
   --todo-item:#{$todo-item-dark};
@@ -38,6 +39,7 @@ html[data-theme="dark"]{
   --box-shadow:#{$boxShadow-dark};
   --border:#{$border-dark};
   --box-shadow-modal:#{$box-shadow-modal-dark};
+  --hover-input:#{$hover-input-dark};
 
 }
 html[data-theme="light"]{
@@ -55,9 +57,21 @@ html[data-theme="light"]{
   --green:#{$green-light};
   --border:#{$border-light};
   --gray:#{$gray-ligth};
-
+  --hover-input:#{$hover-input-light};
 
 }
+
+html[data-theme="dark"]{
+  select{
+    background:#1A202C ;
+  }
+}
+html[data-theme="light"]{
+  input:not(.chakra-input),select,textarea:focus{
+    border: 2px solid #cbbee7 ;
+  }
+}
+
 
 .swal2-popup{
   background: var(--background);
@@ -291,6 +305,30 @@ body {
 
       .TodoItem-category-icons svg {
         color: var(--color-primary);
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    .edit-container{
+      cursor: pointer;
+      margin-left:auto;
+      transition: all 0.144s ease-in-out;
+      position: relative;
+
+      svg{
+      font-size:20px;
+
+      }
+
+      &:hover{
+        svg{
+      color: var(--color-primary);
+
+        }
+        .Icon-tooltip{
+          visibility:visible;
+          opacity: 1;
+        }
       }
     }
   }
@@ -498,11 +536,11 @@ select {
   }
 
   &:hover {
-    background: rgba(247, 247, 247, 0.922);
+    background: var(--hover-input);
   }
 
   &:focus {
-    border: 2px solid #cbbee7;
+    border: 2px solid  var(--hover-input);
   }
 }
 

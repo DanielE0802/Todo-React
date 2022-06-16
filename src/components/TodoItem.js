@@ -54,7 +54,11 @@ function TodoItem(props) {
       </div>
       <div className="line"></div>
       <p className="description">{props.description}</p>
-      <Icon id={props.id} onClick={editTask} icon="akar-icons:edit" />
+      <div id={props.id} onClick={editTask} className="edit-container">
+      <Icon  icon="akar-icons:edit" />
+      <div className="Icon-tooltip">Editar</div>
+
+      </div>
 
       <span className="close">
         <Icon onClick={props.deleteTask} icon="eva:close-fill" />

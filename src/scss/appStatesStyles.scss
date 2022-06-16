@@ -1,6 +1,41 @@
 @import "todoStyle";
 
 $boxShadow: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
+$gray-ligth:#f4f4f4;
+$gray2-ligth:#e8e8e8;
+$gray3-ligth:#d4d4d4;
+$gray4-ligth:#dedede;
+
+$gray-dark:#272D38;
+$gray2-dark:#242830;
+$gray3-dark:#303745;
+$gray4-dark:#303745;
+
+html[data-theme="dark"]{
+    --gray1:#{$gray-dark};
+    --gray2:#{$gray2-dark};
+    --gray3:#{$gray3-dark};
+    --gray4:#{$gray4-dark};
+
+  
+  }
+  html[data-theme="light"]{
+    --gray1:#{$gray-ligth};
+    --gray2:#{$gray2-ligth};
+    --gray3:#{$gray3-ligth};
+    --gray4:#{$gray4-ligth};
+  
+  }
+
+
+.list-loading{
+    animation: pulsingAnimation 1.6s forwards infinite ease-in-out  ;
+}
+
+.TodoList.container:not(.list-loading){
+    animation: inAnimation 0.4s forwards 1 ease-in-out  ;
+
+}
 
 .loading-todo {
     user-select: none;
@@ -14,7 +49,7 @@ $boxShadow: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
 
     // Background
     background: #fcfcfc;
-    background: linear-gradient(to right, #f4f4f4 8%, #e8e8e8 18%, #f4f4f4 33%);
+    background: linear-gradient(to right, var(--gray1) 8%, var(--gray2) 18%, var(--gray1) 33%);
     animation: preloadAnimation 3.5s forwards infinite linear;
 
     .loading-title {
@@ -23,7 +58,7 @@ $boxShadow: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
         margin-top: 5px;
         height: 40px;
         width: 100%;
-        background: linear-gradient(to right, #d4d4d4 8%, #e8e8e8 18%, #d4d4d4 33%);
+        background: linear-gradient(to right, var(--gray3) 8%, var(--gray2) 18%, var(--gray3) 33%);
         animation: preloadAnimation 3.5s forwards infinite linear;
     }
 
@@ -33,7 +68,7 @@ $boxShadow: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
         border-radius: 8px;
         height: 100px;
         width: 100%;
-        background: linear-gradient(to right, #dedede 8%, #e8e8e8 18%, #dedede 33%);
+        background: linear-gradient(to right, var(--gray4) 8%, var(--gray2) 18%, var(--gray4) 33%);
         animation: preloadAnimation 3.5s forwards infinite linear;
     }
 
@@ -47,7 +82,7 @@ $boxShadow: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
         right: -10px;
         height:30px;
         width: 30px;
-        background: linear-gradient(to right, #f4f4f4 8%, #e8e8e8 18%, #f4f4f4 33%);
+        background: linear-gradient(to right, var(--gray1) 8%, var(--gray2) 18%, var(--gray1) 33%);
         animation: preloadAnimation 29.5s forwards infinite linear;
     }
 }
@@ -81,5 +116,28 @@ $boxShadow: 0px 7px 12px 6px rgba(117, 117, 117, 0.13);
 
     100% {
         background-position: 769px
+    }
+}
+
+@keyframes pulsingAnimation {
+    0% {
+        transform: scale(0.97);
+    }
+
+    70% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.97);
+    }
+}
+
+@keyframes inAnimation {
+    0% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
     }
 }
