@@ -14,7 +14,7 @@ function TodoList(props) {
             {error && onError()}
     
             {!loading && tasks.length < 1 && onEmpty()}
-            {!loading && searchedTasks.length < 1 && onSearchEmpty()}
+            {!loading && searchedTasks.length < 1 && tasks.length > 0 && onSearchEmpty()}
     
             {searchedTasks.map(render)}
     
