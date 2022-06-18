@@ -1,7 +1,7 @@
-import { createPortal } from "react-dom";
+import { createPortal } from 'react-dom';
 
 function Modal({ children }) {
-  return createPortal(children, document.getElementById("modal"));
+	return createPortal(children, document.getElementById('modal'));
 }
 
 export { Modal };
