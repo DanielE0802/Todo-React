@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
 import { TodoBotton } from '../components/TodoBotton';
 import { TodoCounter } from '../components/TodoCounter';
 import { TodoItem } from '../components/TodoItem';
@@ -18,7 +18,7 @@ import { TodosEmpty } from '../components/appStates/TodosEmpty';
 import { TodoSearchEmpty } from '../components/appStates/TodoSearchEmpty';
 
 function AppUI() {
-	const { loading, error, searchedTasks, completeTask, deleteTask, tasks } = React.useContext(TaskContext);
+	const { loading, error, searchedTasks, completeTask, deleteTask, tasks } = useContext(TaskContext);
 
 	return (
 		<Fragment>

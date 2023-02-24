@@ -21,7 +21,7 @@ function TaskProvider(props) {
 	const [edit, setEdit] = useState('');
 	const [idEdit, setIdEdit] = useState('');
 
-	if (!search.length > 1) {
+	if (!search.length > 3) {
 		searchedTasks = tasks;
 	} else {
 		searchedTasks = tasks.filter(task => {

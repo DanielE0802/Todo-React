@@ -24,8 +24,8 @@ function TodoList(props) {
 				<section className={!loading && searchedTasks.length > 0 ? 'TodoList container' : 'container'}>
 					{error && onError()}
 
-					{!loading && tasks.length < 1 && onEmpty()}
-					{!loading && searchedTasks.length < 1 && tasks.length > 0 && onSearchEmpty()}
+					{tasks.length < 1 && onEmpty()}
+					{searchedTasks.length < 1 && tasks.length > 0 && onSearchEmpty()}
 
 					{searchedTasks.map(render)}
 				</section>
